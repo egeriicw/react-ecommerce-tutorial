@@ -7,4 +7,4 @@ const FileUpload = () => {
     </div>;
 }
 
-export default uploadFile;
+export default FileUpload;
