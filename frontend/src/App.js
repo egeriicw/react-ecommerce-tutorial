@@ -9,7 +9,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
           Testing a React App
       </header>
-      <FileUpload />
+      <FileUpload></FileUpload>
     </div>
   );
 }
