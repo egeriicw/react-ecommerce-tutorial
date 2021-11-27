@@ -49,9 +49,9 @@ const UploadFiles = () => {
             <div className="progress">
                 <div className="progress-bar progress-bar-info proress-bar-striped"
                 role="progressBar"
-                aria-progressNow={progress}
-                aria-valueMin="0"
-                aria-valueMax="100"
+                aria-progressnow={progress}
+                aria-valuemin="0"
+                aria-valuemax="100"
                 style={{ width: progress + "%"}}>
                 {progress}%
                 </div>
