@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import UploadService from '../services/fileUploadService';
 
 const UploadFiles = () => {
@@ -7,12 +7,11 @@ const UploadFiles = () => {
     const [currentFile, setCurrentFile] = useState(undefined);
     const [progress, setProgress] = useState(0);
     const [message, setMessage] = useState("");
-
     const [fileInfos, setFileInfos] = useState([])
 
     const selectFile = (e) => {
         setSelectedFiles(e.target.files);
-    }
+    };
 
     const upload = () => {
         let currentFile = selectedFiles[0];
@@ -44,52 +43,50 @@ const UploadFiles = () => {
         });
     }, []);
 
-    return <div>
-        {currentFile && (
-            <div className="progress">
-                <div className="progress-bar progress-bar-info proress-bar-striped"
-                role="progressBar"
-                aria-progressnow={progress}
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style={{ width: progress + "%"}}>
-                {progress}%
+    return (
+        <div>
+            {currentFile && (
+                <div className="progress">
+                    <div 
+                    className="progress-bar progress-bar-info proress-bar-striped"
+                    role="progressbar"
+                    aria-progressnow={progress}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    style={{ width: progress + "%"}}>
+                    {progress}%
+                    </div>
                 </div>
+            )}
+
+            <label className="btn btn-default">
+                <input type="file" onChange={selectFile}></input>    
+            </label>
+
+            <button 
+                className="btn btn-success"
+                disabled={!selectedFiles}
+                onClick={upload}
+            >
+                Upload
+            </button>
+
+            <div className="alert alert-light" role="alert">
+                {message}
             </div>
-        )}
 
-        <label className="btn btn-default">
-            <input type="file" onChange={selectFile}></input>    
-        </label>
-
-        <button 
-            className="btn btn-success"
-            disabled={!selectedFiles}
-            onClick={upload}
-        >
-        Upload
-        </button>
-
-        <div className="alert alert-lite" role="alert">
-            {message}
-        </div>
-
-        <div className="card">
-            <div className="card-reader">
-                List of files
+            <div className="card">
+                <div className="card-header">List of files</div>
+                <ul className="list-group list-group-flush">
+                    {fileInfos &&
+                        fileInfos.map((file, index) => (
+                            <li className="list-group-item" key={index}>
+                                <a href={file.url}>{file.name}</a>
+                            </li>
+                        ))}
+                </ul>
             </div>
-            <ul className="list-group list-group-flush">
-                {fileInfos &&
-                    fileInfos.map((file, index) => {
-                        <li className="list-group-item" key={index}>
-                            <a href={file.url}>{file.name}</a>
-                        </li>
-                    })
-                };
-            </ul>
         </div>
-    </div>
-}
-
+    );
+};
 export default UploadFiles;
-

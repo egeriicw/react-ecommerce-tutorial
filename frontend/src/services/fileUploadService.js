@@ -3,7 +3,7 @@ import http from "../http-common";
 const upload = (file, onUploadProgress) => {
     let formData = new FormData();
 
-    formData.append(file, formData);
+    formData.append("file", file);
 
     return http.post("/upload", formData, {
         headers: {
@@ -17,4 +17,7 @@ const getFiles = () => {
     http.get("/files");
 };
 
-export default {upload, getFiles};
+export default {
+    upload, 
+    getFiles
+};
