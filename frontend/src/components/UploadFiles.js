@@ -9,6 +9,12 @@ const UploadFiles = () => {
     const [message, setMessage] = useState("");
     const [fileInfos, setFileInfos] = useState([])
 
+    useEffect(() => {
+        UploadService.getFiles().then((response) => {
+            setFileInfos(response.data);
+        });
+    }, []);
+    
     const selectFile = (e) => {
         setSelectedFiles(e.target.files);
     };
@@ -36,12 +42,6 @@ const UploadFiles = () => {
 
         setCurrentFile(undefined);
     };
-
-    useEffect(() => {
-        UploadService.getFiles().then((response) => {
-            setFileInfos(response.data);
-        });
-    }, []);
 
     return (
         <div>
