@@ -7,14 +7,14 @@ const UploadFiles = () => {
     const [currentFile, setCurrentFile] = useState(undefined);
     const [progress, setProgress] = useState(0);
     const [message, setMessage] = useState("");
-    const [fileInfos, setFileInfos] = useState([])
+    const [fileInfos, setFileInfos] = useState([]);
 
     useEffect(() => {
         UploadService.getFiles().then((response) => {
             setFileInfos(response.data);
         });
     }, []);
-    
+
     const selectFile = (e) => {
         setSelectedFiles(e.target.files);
     };
@@ -48,12 +48,13 @@ const UploadFiles = () => {
             {currentFile && (
                 <div className="progress">
                     <div 
-                    className="progress-bar progress-bar-info proress-bar-striped"
-                    role="progressbar"
-                    aria-progressnow={progress}
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    style={{ width: progress + "%"}}>
+                        className="progress-bar progress-bar-info proress-bar-striped"
+                        role="progressbar"
+                        aria-valuenow={progress}
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style={{ width: progress + "%"}} 
+                    >
                     {progress}%
                     </div>
                 </div>
